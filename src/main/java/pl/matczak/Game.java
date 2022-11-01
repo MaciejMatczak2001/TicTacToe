@@ -28,16 +28,16 @@ public class Game {
 
     public void move(Symbol symbol, int x, int y) {
         if (x < 0 || x >= size) {
-            throw new GameException("A ten x to chyba nie taki");
+            throw new GameException("You are outranging the game board");
         }
         if (y < 0 || y >= size) {
-            throw new GameException("A ten y to chyba nie taki");
+            throw new GameException("You are outranging the game board");
         }
         if (symbol == null) {
-            throw new GameException("Ale że czemu null");
+            throw new GameException("You cannot put null here");
         }
         if (board[x][y] != null) {
-            throw new GameException("Zajęte");
+            throw new GameException("Field taken");
         }
 
         board[x][y] = symbol;
@@ -98,12 +98,10 @@ public class Game {
         if (result != null) {
             return mapSymbolToGameStatus(result);
         }
-//        Symbol[] diagonal1 = {board[0][0], board[1][1], board[2][2]};
         return GameStatus.NO_WINNER;
     }
 
     private GameStatus checkInDiagonal2() {
-//        Symbol[] diagonal2 = {board[0][2], board[1][1], board[2][0]};
         Symbol[] diagonal2 = new Symbol[size];
         for (int i = 0; i < size; i++) {
             diagonal2[i] = board[size - 1 - i][i];
